@@ -1,5 +1,29 @@
 # ----------------- Implementation (TODO) -----------------
-# TODO: Implement the method below.
+
+# 
+def group_by_prefix(words, n)
+  #  Validação do tipo de 'words'
+  raise ArgumentError, "words must be an Array" unless words.is_a?(Array)
+
+  #  Validação de 'n' (tem que ser inteiro e > 0, como o enunciado exige)
+  raise ArgumentError, "n must be an Integer greater than zero" unless n.is_a?(Integer) && n > 0
+
+  #  Hash com valor padrão []
+  groups = Hash.new { |h, k| h[k] = [] }
+
+  #  Itera itens e agrupa
+  words.each do |w|
+    next unless w.is_a?(String)   # ignora não-strings
+    next unless w.length >= n     # ignora curtas
+
+    key = w[0, n].downcase        # chave normalizada
+    groups[key] << w               # preserva forma original
+  end
+
+  #  Retorna array de arrays
+  groups.values
+end
+
 # ----------------- Color helpers -----------------
 def green(t)  = "\e[32m#{t}\e[0m"
 def red(t)    = "\e[31m#{t}\e[0m"
