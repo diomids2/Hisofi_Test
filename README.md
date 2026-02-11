@@ -1,3 +1,9 @@
+
+# hiSofi – Agrupar Palavras por Prefixo (Ruby)
+
+Implementação do método `group_by_prefix(words, n)` para agrupar palavras pelo prefixo comum de comprimento `n`, **sem diferenciar maiúsculas/minúsculas**, preservando as formas originais na saída.
+
+
 # 🧩 Agrupar Palavras por Prefixo Comum
 
 ## 📌 Descrição

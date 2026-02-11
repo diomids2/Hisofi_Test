@@ -34,14 +34,15 @@ def normalize(groups)
 end
 def assert_eq(actual, expected, msg = nil)
   if actual != expected
-    puts red(":x_vermelho: #{msg}")
+    puts red("❌ #{msg}")
     puts red("   Expected: #{expected.inspect}")
     puts red("   Actual:   #{actual.inspect}")
     raise 'Test failed'
   else
-    puts green(":marca_de_verificação_branca: #{msg}")
+    puts green("✅ #{msg}")
   end
 end
+
 def assert_raises(error_class, msg = nil)
   raised = false
   begin
@@ -49,19 +50,21 @@ def assert_raises(error_class, msg = nil)
   rescue => e
     raised = e.is_a?(error_class)
     if raised
-      puts green(":marca_de_verificação_branca: #{msg}")
+      puts green("✅ #{msg}")
     else
-      puts red(":x_vermelho: #{msg}")
+      puts red("❌ #{msg}")
       puts red("   Expected #{error_class}, got #{e.class}: #{e.message}")
       raise "Test failed"
     end
   end
   unless raised
-    puts red(":x_vermelho: #{msg}")
+    puts red("❌ #{msg}")
     puts red("   Expected #{error_class}, but no exception was raised")
     raise "Test failed"
   end
 end
+
+
 # ----------------- Tests -----------------
 puts yellow("\nRunning tests for group_by_prefix...\n\n")
 begin
@@ -95,7 +98,7 @@ begin
   assert_raises(ArgumentError, "n < 0 should fail")  { group_by_prefix(%w[car cat], -2) }
   # 9) Validation: words not an Array raises ArgumentError
   assert_raises(ArgumentError, "words not Array should fail") { group_by_prefix("car", 2) }
-  puts green("\n:confete_e_serpentina: All tests passed successfully!\n")
+  puts green("\n🎉  All tests passed successfully!\n")
 rescue NotImplementedError => e
   puts yellow(":atenção:  #{e.message}")
   puts yellow("   Hint: create a Hash keyed by prefix = word[0, n].downcase,")
